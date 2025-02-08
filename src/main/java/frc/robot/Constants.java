@@ -131,11 +131,17 @@ public final class Constants {
     public static final double kFreeSpeedRpm = 5676;
   }
 
-  public static final class ElevatorConstants{
+  public static final class CoralConstants {
+    public static final int kCoralMotorCanID = 31;
+  }
+
+  public static final class ElevatorConstants {
     public static final int kLeftLiftCanID = 41;
     public static final int kRightLiftCanID = 42;
-    public static final int kElevatorMotorCurrentLimit = 50;
-    public static final double kElevatorSpeed = 50.0;
+    public static final int kElevatorPulleyChannelID = 0; // DIO port
+    public static final int kElevatorMotorCurrentLimit = 50; // amps
+    public static final double kElevatorMotorRampRate = 1.0; // in seconds
+    public static final double kElevatorSpeed = 0.5; // percent
   }
 
 

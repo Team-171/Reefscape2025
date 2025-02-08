@@ -10,23 +10,28 @@ import com.revrobotics.spark.SparkBase.PersistMode;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ElevatorConstants;
-import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.DutyCycleEncoder;
 
 
 public class ElevatorSubsystem extends SubsystemBase{
     private final SparkMax m_leftLift = new SparkMax(ElevatorConstants.kLeftLiftCanID, MotorType.kBrushless);
     private final SparkMax m_rightLift = new SparkMax(ElevatorConstants.kRightLiftCanID, MotorType.kBrushless);
+    private final DutyCycleEncoder m_winchEncoder = new DutyCycleEncoder(ElevatorConstants.kElevatorPulleyChannelID, 4, 2.0);
 
     public ElevatorSubsystem() {
+
+        // Elevator Motors
         SparkMaxConfig leftLiftConfig = new SparkMaxConfig();
         SparkMaxConfig rightLiftConfig = new SparkMaxConfig();
 
+        // Encoder
+
         leftLiftConfig
             .smartCurrentLimit(ElevatorConstants.kElevatorMotorCurrentLimit)
-            .closedLoopRampRate(0.125);
+            .closedLoopRampRate(ElevatorConstants.kElevatorMotorRampRate);
         rightLiftConfig
             .smartCurrentLimit(ElevatorConstants.kElevatorMotorCurrentLimit)
-            .closedLoopRampRate(0.125)
+            .closedLoopRampRate(ElevatorConstants.kElevatorMotorRampRate)
             .inverted(true);
 
         m_leftLift.configure(leftLiftConfig, ResetMode.kResetSafeParameters,
